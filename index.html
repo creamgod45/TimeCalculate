@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Calculate</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./tailwind.config.js"></script>
+    <script src="./index.js"></script>
+</head>
+<style>
+    #my-popover::backdrop {
+        background-color: rgba(0, 0, 0, 0.24);
+    }
+</style>
+
+<body>
+    <div class="px-4">
+        <label>統一計算時間：</label>
+        <select class="calculate-unit bg-slate-200 ring-1 ring-slate-200 rounded-md">
+            <option value="s">秒</option>
+            <option value="m">分鐘</option>
+            <option value="h">小時</option>
+            <option value="d">天</option>
+        </select>
+    </div>
+    <div class="px-4 flex gap-5">
+        <label>總共時間：</label>
+        <div id="total_html"></div>
+    </div>
+    <div class="calculate-time-input-list pt-4 px-4 w-full">
+        <div class="cli-item flex flex-nowarp gap-4 mb-5">
+            <div class="start-time">
+                <label class="mr-3">開始時間</label>
+                <input class="bg-slate-200 ring-1 ring-slate-200 rounded-md" type="datetime-local" class="input">
+            </div>
+            <div class="end-time">
+                <label class="mr-3">結束時間</label>
+                <input class="bg-slate-200 ring-1 ring-slate-200 rounded-md" type="datetime-local" class="input">
+            </div>
+            <div class="time-counter">未計算</div>
+            <div class="control-cli-item flex gap-4">
+                <button class="rounded-md bg-green-600 ring-1 ring-slate-200 hover:bg-green-500 focus:bg-green-500 shadow px-2 add">+</button>
+                <button class="rounded-md bg-orange-400 ring-1 ring-slate-200 focus:bg-orange-300 hover:bg-orange-300 shadow px-2 reduce">-</button>
+            </div>
+            <button class="rounded-md bg-green-300 fouce:bg-green-200 hover:bg-green-200 ring-1 ring-slate-200 shadow px-2 counter-time-btn">計算</button>
+        </div>
+    </div>
+</body>
+
+</html>
