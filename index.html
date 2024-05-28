@@ -9,42 +9,61 @@
     <script src="./tailwind.config.js"></script>
     <script src="./index.js"></script>
 </head>
-<style>
-    #my-popover::backdrop {
-        background-color: rgba(0, 0, 0, 0.24);
-    }
-</style>
 
 <body>
-    <div class="px-4">
-        <label>統一計算時間：</label>
-        <select class="calculate-unit bg-slate-200 ring-1 ring-slate-200 rounded-md">
-            <option value="s">秒</option>
-            <option value="m">分鐘</option>
-            <option value="h">小時</option>
-            <option value="d">天</option>
-        </select>
-    </div>
-    <div class="px-4 flex gap-5">
-        <label>總共時間：</label>
-        <div id="total_html"></div>
-    </div>
-    <div class="calculate-time-input-list pt-4 px-4 w-full">
-        <div class="cli-item flex flex-nowarp gap-4 mb-5">
-            <div class="start-time">
-                <label class="mr-3">開始時間</label>
-                <input class="bg-slate-200 ring-1 ring-slate-200 rounded-md" type="datetime-local" class="input">
+    <div class="w-screen h-screen flex justify-center items-center">
+        <div class="mt-5 ring-1 ring-slate-200 shadow rounded-md p-5 bg-right-bottom bg-no-repeat bg-teal-600" style='background-size: 20%;background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZGVmcy8+CiAgPHBhdGggZD0iTSA1MDUuMTMyIDQwMC44ODIgQyA1MDUuMTMyIDU2MS4wMDEgMzMxLjc5OSA2NjEuMDc1IDE5My4xMzIgNTgxLjAxNiBDIDEyOC43NzYgNTQzLjg2IDg5LjEzMiA0NzUuMTk0IDg5LjEzMiA0MDAuODgyIEMgODkuMTMyIDI0MC43NjQgMjYyLjQ2NSAxNDAuNjkgNDAxLjEzMiAyMjAuNzQ5IEMgNDY1LjQ4NyAyNTcuOTA1IDUwNS4xMzIgMzI2LjU3MSA1MDUuMTMyIDQwMC44ODIgWiBNIDQxLjEzMiA0MDAuODgyIEMgNDEuMTMyIDU5Ny45NTEgMjU0LjQ2NSA3MjEuMTE5IDQyNS4xMzIgNjIyLjU4NSBDIDUwNC4zMzkgNTc2Ljg1NSA1NTMuMTMyIDQ5Mi4zNDIgNTUzLjEzMiA0MDAuODgyIEMgNTUzLjEzMiAyMDMuODE0IDMzOS43OTkgODAuNjQ2IDE2OS4xMzIgMTc5LjE4IEMgODkuOTI1IDIyNC45MSA0MS4xMzIgMzA5LjQyMyA0MS4xMzIgNDAwLjg4MiBaIE0gMjczLjEzMiAyNjQuODgyIEwgMjczLjEzMiA0MDAuODgyIEMgMjczLjEzMiA0MDguODgyIDI3Ny4xMzIgNDE2LjM4MiAyODMuODMyIDQyMC44ODIgTCAzNzkuODMyIDQ4NC44ODIgQyAzOTAuODMyIDQ5Mi4yODIgNDA1LjczMiA0ODkuMjgyIDQxMy4xMzIgNDc4LjE4MiBDIDQyMC41MzIgNDY3LjA4MiA0MTcuNTMyIDQ1Mi4yODIgNDA2LjQzMiA0NDQuODgyIEwgMzIxLjEzMiAzODguMDgyIEwgMzIxLjEzMiAyNjQuODgyIEMgMzIxLjEzMiAyNTEuNTgyIDMxMC40MzIgMjQwLjg4MiAyOTcuMTMyIDI0MC44ODIgQyAyODMuODMyIDI0MC44ODIgMjczLjEzMiAyNTEuNTgyIDI3My4xMzIgMjY0Ljg4MiBaIiBzdHlsZT0iZmlsbDogcmdiKDk1LCA5NSwgOTUpOyIvPgo8L3N2Zz4=")'>
+            <div class="text-3xl w-full flex justify-center items-center">
+                <div class="size-6">
+                    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                        <defs/>
+                        <path d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/>
+                    </svg>
+                </div>&nbsp;時間計算程式</div>
+            <div class="px-4 mt-5">
+                <label for="timeunit">統一計算時間：</label>
+                <select id="timeunit" class="calculate-unit bg-slate-200 ring-1 ring-slate-200 rounded-md">
+                    <option value="s">秒</option>
+                    <option value="m">分鐘</option>
+                    <option value="h">小時</option>
+                    <option value="d">天</option>
+                    <option value="w">週</option>
+                    <option value="TenDayPeriod">旬</option>
+                    <option value="M">月</option>
+                    <option value="S">季</option>
+                    <option value="y">年</option>
+                    <option value="Decade">年代(秩)</option>
+                    <option value="Generation">世</option>
+                    <option value="SexagenaryCycle">甲子</option>
+                    <option value="Century">世紀</option>
+                    <option value="Millennium">千紀、千年</option>
+                </select>
             </div>
-            <div class="end-time">
-                <label class="mr-3">結束時間</label>
-                <input class="bg-slate-200 ring-1 ring-slate-200 rounded-md" type="datetime-local" class="input">
+            <div class="px-4 flex gap-5">
+                <label>總共時間：</label>
+                <div id="total_html">0 秒</div>
             </div>
-            <div class="time-counter">未計算</div>
-            <div class="control-cli-item flex gap-4">
-                <button class="rounded-md bg-green-600 ring-1 ring-slate-200 hover:bg-green-500 focus:bg-green-500 shadow px-2 add">+</button>
-                <button class="rounded-md bg-orange-400 ring-1 ring-slate-200 focus:bg-orange-300 hover:bg-orange-300 shadow px-2 reduce">-</button>
+            <div class="calculate-time-input-list pt-4 px-4 w-full max-h-[70vh] overflow-y-auto">
+                <div class="cli-item flex flex-wrap gap-4 mb-5">
+                    <div class="start-time flex-auto w-fit">
+                        <label for="input1" class="mr-3">開始時間</label>
+                        <input id="input1" class="bg-slate-200 ring-1 ring-slate-200 rounded-md" type="datetime-local">
+                        <select id="input3" class="ml-3 seconds bg-slate-200 ring-1 ring-slate-200 rounded-md"></select>
+                        <label for="input3" class="ml-3">秒</label>
+                    </div>
+                    <div class="end-time flex-auto w-fit">
+                        <label for="input2" class="mr-3">結束時間</label>
+                        <input id="input2" class="bg-slate-200 ring-1 ring-slate-200 rounded-md" type="datetime-local">
+                        <select id="input4" class="seconds bg-slate-200 ring-1 ring-slate-200 rounded-md ml-3"></select>
+                        <label for="input4" class="ml-3">秒</label>
+                    </div>
+                    <div class="time-counter flex-auto w-fit">未計算</div>
+                    <div class="control-cli-item flex gap-4 flex-auto w-fit">
+                        <button class="rounded-md bg-green-600 ring-1 ring-slate-200 hover:bg-green-500 focus:bg-green-500 shadow px-2 add">+</button>
+                        <button class="rounded-md bg-orange-400 ring-1 ring-slate-200 focus:bg-orange-300 hover:bg-orange-300 shadow px-2 reduce">-</button>
+                    </div>
+                </div>
             </div>
-            <button class="rounded-md bg-green-300 fouce:bg-green-200 hover:bg-green-200 ring-1 ring-slate-200 shadow px-2 counter-time-btn">計算</button>
         </div>
     </div>
 </body>
